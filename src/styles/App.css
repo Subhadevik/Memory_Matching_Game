@@ -1,145 +1,199 @@
 /* Global styles */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  color: #fff;
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* Container for the game area */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  position: relative; /* Required for absolute positioning of theme button */
+}
+
+/* Card grid layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns per row */
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Scoreboard container */
+.scoreboard {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* Reset button */
+.reset-button {
+  margin-top: 20px;
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-button:hover {
+  background-color: #555;
+}
+
+/* Dark Theme Styles */
+.dark-theme {
+  background-color: #121212;
+  color: white;
+}
+
+.dark-theme h1 {
+  color: #fafdfe; /* Light cyan color for dark theme */
+}
+
+/* Light Theme Styles */
+.light-theme {
+  background-color: #ffffff;
+  color: #333;
+}
+
+.light-theme h1 {
+  color: #021603; /* Green color for light theme */
+}
+
+/* Theme Toggle Button (Positioned in top-right corner) */
+.theme-toggle-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.theme-toggle-button:hover {
+  background-color: #555;
+}
+
+/* Winning message animation */
+.winning-message {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0;
+  position: fixed;
+  top: 50%; /* Position vertically at the center */
+  transform: translate(-50%, -50%) scale(0.5);
+  transform: scale(0.5); /* Start with scaling down */
+  text-shadow: 0 0 20px rgba(76, 175, 80, 1), 0 0 30px rgba(76, 175, 80, 1); /* Glow effect */
+  animation: winAnimation 2.5s ease-out forwards, pulseGlow 2s infinite; /* Combine win and glow effects */
+}
+
+/* Dark theme specific message */
+.dark-theme-message {
+  color: white;
+}
+
+/* Light theme specific message */
+.light-theme-message {
+  color: black;
+}
+
+/* Winning message animation */
+@keyframes winAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg); /* Start with scaling and a slight rotation */
   }
-  
-  h1 {
-    text-align: center;
-    margin-top: 20px;
-    color: #fff;
-    transition: color 0.3s ease; /* Smooth transition for color change */
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(10deg); /* Scale up and rotate slightly */
   }
-  
-  /* Container for the game area */
-  .game-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    position: relative; /* Required for absolute positioning of theme button */
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg); /* End with the normal scale and no rotation */
   }
-  
-  /* Card grid layout */
+}
+
+/* Pulsing glow effect */
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 20px rgb(212, 235, 6), 0 0 30px rgba(76, 175, 80, 1);
+  }
+  50% {
+    text-shadow: 0 0 40px rgb(212, 235, 6), 0 0 60px rgba(76, 175, 80, 1);
+  }
+  100% {
+    text-shadow: 0 0 20px rgb(212, 235, 6), 0 0 30px rgba(76, 175, 80, 1);
+  }
+}
+
+/* Responsive Design for Mobile and Smaller Screens */
+@media (max-width: 768px) {
   .card-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns per row */
-    gap: 20px;
-    max-width: 600px;
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for tablets and small screens */
+    gap: 15px;
   }
-  
-  /* Scoreboard container */
+
   .scoreboard {
-    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .reset-button,
+  .theme-toggle-button {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .winning-message {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile screens */
+    gap: 10px;
+  }
+
+  .card-grid > div {
+    font-size: 14px; /* Adjust card font size */
+  }
+
+  .scoreboard {
+    font-size: 16px;
+  }
+
+  .reset-button,
+  .theme-toggle-button {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  h1 {
     font-size: 20px;
   }
-  
-  /* Reset button */
-  .reset-button {
-    margin-top: 20px;
-    background-color: #444;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+
+  .winning-message {
+    font-size: 24px;
   }
-  
-  .reset-button:hover {
-    background-color: #555;
-  }
-  
-  /* Dark Theme Styles */
-  .dark-theme {
-    background-color: #121212;
-    color: white;
-  }
-  
-  .dark-theme h1 {
-    color: #fafdfe; /* Light cyan color for dark theme */
-  }
-  
-  /* Light Theme Styles */
-  .light-theme {
-    background-color: #ffffff;
-    color: #333;
-  }
-  
-  .light-theme h1 {
-    color: #021603; /* Green color for light theme */
-  }
-  
-  /* Theme Toggle Button (Positioned in top-right corner) */
-  .theme-toggle-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #444;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .theme-toggle-button:hover {
-    background-color: #555;
-  }
-  
- /* Winning message animation */
-.winning-message {
-    font-size: 32px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px;
-    opacity: 0;
-    position: fixed;
-    top: 50%; /* Position vertically at the center */
-    transform: translate(-50%, -50%) scale(0.5);
-    transform: scale(0.5); /* Start with scaling down */
-    text-shadow: 0 0 20px rgba(76, 175, 80, 1), 0 0 30px rgba(76, 175, 80, 1); /* Glow effect */
-    animation: winAnimation 2.5s ease-out forwards, pulseGlow 2s infinite; /* Combine win and glow effects */
-  }
-  
-  /* Dark theme specific message */
-  .dark-theme-message {
-    color: white;
-  }
-  
-  /* Light theme specific message */
-  .light-theme-message {
-    color: black;
-  }
-  
-  /* Winning message animation */
-  @keyframes winAnimation {
-    0% {
-      opacity: 0;
-      transform: scale(0.5) rotate(-10deg); /* Start with scaling and a slight rotation */
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.1) rotate(10deg); /* Scale up and rotate slightly */
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) rotate(0deg); /* End with the normal scale and no rotation */
-    }
-  }
-  
-  /* Pulsing glow effect */
-  @keyframes pulseGlow {
-    0% {
-      text-shadow: 0 0 20px rgb(212, 235, 6), 0 0 30px rgba(76, 175, 80, 1);
-    }
-    50% {
-      text-shadow: 0 0 40px rgb(212, 235, 6), 0 0 60px rgba(76, 175, 80, 1);
-    }
-    100% {
-      text-shadow: 0 0 20px rgb(212, 235, 6), 0 0 30px rgba(76, 175, 80, 1);
-    }
-  }
-  
+}
